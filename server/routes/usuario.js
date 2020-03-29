@@ -106,7 +106,7 @@ app.delete('/usuario/:id', function(req, res) {
     let id = req.params.id;
     let cambiaEstado = {
         estado: false
-    }
+    };
     Usuario.findByIdAndUpdate(id, cambiaEstado, { new: true }, (err, usuarioBorrado) => {
         if (err) {
             return res.status(400).json({

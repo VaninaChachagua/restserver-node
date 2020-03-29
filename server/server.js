@@ -14,12 +14,19 @@ app.use(bodyParser.json());
 app.use(require('./routes/index'));
 console.log('Conexión: ', process.env.URLDB);
 //mongoclient constructor
-mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
-    (err, res) => {
-        if (err) throw err;
+// mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
+//     (err, res) => {
+//         if (err) throw err;
 
-        console.log('Base de datos ONLINE');
-    });
+//         console.log('Base de datos ONLINE');
+//     });
+mongoose.connect(process.env.URLDB, (err, res) => {
+
+    if (err) throw err;
+
+    console.log('Base de datos ONLINE');
+
+});
 
 //Callback
 app.listen(process.env.PORT, () => {
