@@ -14,4 +14,6 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = process.env.MONGO_URI;
 }
 
+// urlDB = 'mongodb+srv://lunina:jUf2ae3aYLqSnaE9@cluster0-qjv8d.mongodb.net/cafe';
+console.log('Bd: ', urlDB);
 process.env.URLDB = urlDB;

@@ -10,8 +10,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json ... 
 app.use(bodyParser.json());
 
-app.use(require('./routes/usuario'));
-
+//Configuración de rutas
+app.use(require('./routes/index'));
+console.log('Conexión: ', process.env.URLDB);
 //mongoclient constructor
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
     (err, res) => {
