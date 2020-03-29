@@ -8,9 +8,10 @@ let urlDB;
 if (process.env.NODE_ENV === 'dev') {
     //BD local
     urlDB = 'mongodb://localhost:27017/cafe';
+
 } else {
     //BD nube
     urlDB = 'mongodb+srv://lunina:grZNskfQL1Bxf1aw@cluster0-qjv8d.mongodb.net/cafe';
 }
 
-process.env.urlDB = urlDB;
+process.env.URLDB = urlDB;
