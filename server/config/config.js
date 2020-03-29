@@ -5,13 +5,13 @@ process.env.PORT = process.env.PORT || 3000;
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 let urlDB;
-// if (process.env.NODE_ENV === 'dev') {
-//     //BD local
-//     urlDB = 'mongodb://localhost:27017/cafe';
+if (process.env.NODE_ENV === 'dev') {
+    //BD local
+    urlDB = 'mongodb://localhost:27017/cafe';
 
-// } else {
-//     //BD nube
-urlDB = 'mongodb+srv://lunina:grZNskfQL1Bxf1aw@cluster0-qjv8d.mongodb.net/cafe';
-// }
+} else {
+    //BD nube
+    urlDB = process.env.MONGO_URI;
+}
 
 process.env.URLDB = urlDB;
