@@ -4,8 +4,11 @@ const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
+//destructuración
+const { verificaToken, verificaAdminRole } = require('../middlewares/authenticacion');
 
-app.get('/usuario', function(req, res) {
+//el segundo parametro es un middleware
+app.get('/usuario', verificaToken, (req, res) => {
 
 
     let desde = req.query.desde || 0;
@@ -33,7 +36,7 @@ app.get('/usuario', function(req, res) {
         });
 });
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verificaToken, verificaAdminRole], (req, res) => {
     let body = req.body;
     let usuario = new Usuario({
         nombre: body.nombre,
@@ -57,7 +60,7 @@ app.post('/usuario', function(req, res) {
 
 });
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
 
@@ -73,7 +76,7 @@ app.put('/usuario/:id', function(req, res) {
             usuario: usuarioBD
         });
     });
-    //Pido que retorne lo que mandé en el url
+
 
 });
 // baja física 
@@ -102,7 +105,7 @@ app.put('/usuario/:id', function(req, res) {
 //         });
 //     });
 // });
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
     let id = req.params.id;
     let cambiaEstado = {
         estado: false

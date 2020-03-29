@@ -20,7 +20,7 @@ console.log('Conexión: ', process.env.URLDB);
 
 //         console.log('Base de datos ONLINE');
 //     });
-mongoose.connect(process.env.URLDB, { useNewUrlParser: true })
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
     .then(console.log('Base de datos ONLINE'))
     .catch(err => {
         console.log(err);

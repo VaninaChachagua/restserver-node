@@ -32,11 +32,15 @@ app.post('/login', (req, res) => {
                 }
             });
         }
+        let token = jwt.sign({
+            usuario: usuarioBD
+        }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN });
 
+        //expiresIn: 60s * 60m * 24h * 30d - expira en 30 días
         res.json({
             ok: true,
             usuario: usuarioBD,
-            token: '123'
+            token
         });
     });
 

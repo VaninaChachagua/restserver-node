@@ -1,9 +1,27 @@
-// //  Puerto
+//******************************
+//          Puerto
+//******************************
 process.env.PORT = process.env.PORT || 3000;
 
+//******************************
 // *** Entorno ***//
+//******************************
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
+
+//******************************
+//      Vencimiento token
+//******************************
+process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+
+//******************************
+//      Seed token
+//******************************
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
+
+//******************************
+//      Base de datos
+//******************************
 let urlDB;
 if (process.env.NODE_ENV === 'dev') {
     //BD local
@@ -14,6 +32,4 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = process.env.MONGO_URI;
 }
 
-// urlDB = 'mongodb+srv://lunina:jUf2ae3aYLqSnaE9@cluster0-qjv8d.mongodb.net/cafe';
-console.log('Bd: ', urlDB);
 process.env.URLDB = urlDB;
