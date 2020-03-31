@@ -36,16 +36,18 @@ app.get('/usuario', verificaToken, (req, res) => {
         });
 });
 
-app.post('/usuario', [verificaToken, verificaAdminRole], (req, res) => {
+app.post('/usuario', [verificaToken, verificaAdminRole], function(req, res) {
+
     let body = req.body;
+
     let usuario = new Usuario({
         nombre: body.nombre,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10),
         role: body.role
     });
-    //callback
     usuario.save((err, usuarioBD) => {
+
         if (err) {
             return res.status(400).json({
                 ok: false,
@@ -57,7 +59,6 @@ app.post('/usuario', [verificaToken, verificaAdminRole], (req, res) => {
             usuario: usuarioBD
         });
     });
-
 });
 
 app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
