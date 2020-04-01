@@ -63,7 +63,7 @@ app.post('/usuario', [verificaToken, verificaAdminRole], function(req, res) {
 
 app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
     let id = req.params.id;
-    let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
+    let body = _.pick(req.body, ['email', 'img', 'role', 'estado']);
 
     Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true }, (err, usuarioBD) => {
         if (err) {
@@ -80,6 +80,8 @@ app.put('/usuario/:id', [verificaToken, verificaAdminRole], (req, res) => {
 
 
 });
+
+
 // baja física 
 //Se puede borrar por post id o por url
 // app.delete('/usuario/:id', function(req, res) {
